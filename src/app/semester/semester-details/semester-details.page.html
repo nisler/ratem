@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Semester</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list lines="full">
+    <ion-item>
+      <ion-input required type="text" placeholder="Semester Name"
+                 [(ngModel)]="semester.semester_name">
+      </ion-input>
+    </ion-item>
+
+    <ion-label>Current</ion-label>
+    <ion-checkbox [(ngModel)]="semester.semester_is_current"
+                  checked="semester.semester_is_current">
+    </ion-checkbox>
+
+    <ion-button expand="full" (click)="saveSemester()">Save</ion-button>
+  </ion-list>
+
+</ion-content>

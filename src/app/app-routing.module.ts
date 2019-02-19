@@ -14,6 +14,18 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
+  },
+  {
+    path: 'semester-list',
+    loadChildren: './semester/semester-list/semester-list.module#SemesterListPageModule'
+  },
+  {
+    path: 'semester-details',
+    loadChildren: './semester/semester-details/semester-details.module#SemesterDetailsPageModule'
+  },
+  {
+    path: 'semester-details/:id',
+    loadChildren: './semester/semester-details/semester-details.module#SemesterDetailsPageModule'
   }
 ];
 
