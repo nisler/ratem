@@ -19,10 +19,12 @@
       </ion-input>
     </ion-item>
 
-    <ion-checkbox [(ngModel)]="semester.semester_is_current"
-                  checked="semester.semester_is_current">
-    </ion-checkbox>
-    <ion-label>Current</ion-label>
+    <ion-item>
+      <ion-checkbox [(ngModel)]="semester.semester_is_current"
+                    checked="semester.semester_is_current">
+      </ion-checkbox>
+      <ion-label>Current</ion-label>
+    </ion-item>
 
     <ion-button expand="full" (click)="saveSemester()">Save</ion-button>
   </ion-list>

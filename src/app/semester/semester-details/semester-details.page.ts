@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Semester} from '../../models/semester.interface';
 import {SemesterService} from '../../services/semester.service';
 import {ActivatedRoute} from '@angular/router';
+import {CourseService} from '../../services/course.service';
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-semester-details',
@@ -16,8 +18,11 @@ export class SemesterDetailsPage implements OnInit {
 
   private semester_id = null;
 
+  private courseList = [];
+
   constructor(private semesterService: SemesterService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private courseService: CourseService) { }
 
   ngOnInit() {
     this.semester_id = this.route.snapshot.paramMap.get('id');
@@ -30,6 +35,10 @@ export class SemesterDetailsPage implements OnInit {
     // TODO: add loading
     this.semesterService.getSemesterDetails(this.semester_id).subscribe(res => {
       this.semester = res;
+    });
+
+    this.courseService.getCourseList().subscribe(res => {
+      this.courseList = res.filter(course => course.semester_id === this.semester_id);
     });
   }
 
