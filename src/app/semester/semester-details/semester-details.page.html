@@ -12,14 +12,15 @@
 
 <ion-content padding>
 
-  <ion-item>{{ semester.semester_name }}</ion-item>
-
-  <ion-item>
-    <ion-checkbox disabled=true
-                  [checked]="semester.semester_is_current">
-    </ion-checkbox>
-    <ion-label>Current</ion-label>
-  </ion-item>
+  <ion-card>
+    <ion-item>{{ semester.semester_name }}</ion-item>
+    <ion-item>
+        <ion-checkbox disabled=true
+                      [checked]="semester.semester_is_current">
+        </ion-checkbox>
+        <ion-label>Current</ion-label>
+    </ion-item>
+  </ion-card>
 
   <ion-list *ngFor="let course of courseList">
     <ion-item lines="inset" button [routerLink]="['/course-details', course.id]">

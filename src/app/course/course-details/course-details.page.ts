@@ -9,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./course-details.page.scss'],
 })
 export class CourseDetailsPage implements OnInit {
-  private course: Course = {
+  course: Course = {
     course_name: '',
     semester_id: '',
     semester_name: '',
