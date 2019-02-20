@@ -12,19 +12,20 @@
 
 <ion-content padding>
 
-  <ion-list lines="full">
-    <ion-item>
-      <ion-input required type="text" placeholder="Semester Name"
-                 [(ngModel)]="semester.semester_name">
-      </ion-input>
-    </ion-item>
+  <ion-item>{{ semester.semester_name }}</ion-item>
 
-    <ion-label>Current</ion-label>
-    <ion-checkbox [(ngModel)]="semester.semester_is_current"
-                  checked="semester.semester_is_current">
-    </ion-checkbox>
+  <ion-checkbox disabled=true
+                checked="semester.semester_is_current">
+  </ion-checkbox>
+  <ion-label>Current</ion-label>
 
-    <ion-button expand="full" (click)="saveSemester()">Save</ion-button>
-  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button><ion-icon name="arrow-dropup"></ion-icon></ion-fab-button>
+    <ion-fab-list side="top">
+      <!--<ion-fab-button routerLink="/course-cu" routerDirection="forward">-->
+      <ion-fab-button><ion-icon name="add"></ion-icon></ion-fab-button> <!-- TODO: add course to course list-->
+      <ion-fab-button [routerLink]="['/semester-cu', semester_id]"><ion-icon name="create"></ion-icon></ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 
 </ion-content>
