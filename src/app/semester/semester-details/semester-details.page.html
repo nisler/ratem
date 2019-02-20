@@ -15,7 +15,7 @@
   <ion-item>{{ semester.semester_name }}</ion-item>
 
   <ion-checkbox disabled=true
-                checked="semester.semester_is_current">
+                [checked]="semester.semester_is_current">
   </ion-checkbox>
   <ion-label>Current</ion-label>
 
