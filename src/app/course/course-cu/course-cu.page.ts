@@ -72,7 +72,7 @@ export class CourseCuPage implements OnInit {
       this.course.semester_is_current = this.semester.semester_is_current;
       this.courseService.addCourse(this.course)
           .then(() => {
-            this.nav.navigateBack('home');
+            this.nav.navigateBack('home'); // TODO: go back to semester details
           }).catch((err) => {
             console.log(err); // TODO: better error checking
           });

@@ -12,7 +12,11 @@ const routes: Routes = [
   { path: 'course-details', loadChildren: './course/course-details/course-details.module#CourseDetailsPageModule' },
   { path: 'course-details/:id', loadChildren: './course/course-details/course-details.module#CourseDetailsPageModule' },
   { path: 'semester-details/:semester_id/course-cu', loadChildren: './course/course-cu/course-cu.module#CourseCuPageModule' },
-  { path: 'course-cu/:id', loadChildren: './course/course-cu/course-cu.module#CourseCuPageModule' }
+  { path: 'course-cu/:id', loadChildren: './course/course-cu/course-cu.module#CourseCuPageModule' },
+  { path: 'assignment-details', loadChildren: './assignment/assignment-details/assignment-details.module#AssignmentDetailsPageModule' },
+  { path: 'assignment-details/:id', loadChildren: './assignment/assignment-details/assignment-details.module#AssignmentDetailsPageModule' },
+  { path: 'assignment-cu', loadChildren: './assignment/assignment-cu/assignment-cu.module#AssignmentCuPageModule' },
+  { path: 'course-details/:course_id/assignment-cu', loadChildren: './assignment/assignment-cu/assignment-cu.module#AssignmentCuPageModule' }
 ];
 
 @NgModule({

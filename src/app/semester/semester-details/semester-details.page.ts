@@ -41,14 +41,16 @@ export class SemesterDetailsPage implements OnInit, OnDestroy {
 
   loadSemester() {
     // TODO: add loading
-    this.semesterSub = this.semesterService.getSemesterDetails(this.semester_id).subscribe(res => {
-      this.semester = res;
-    });
+    this.semesterSub = this.semesterService.getSemesterDetails(this.semester_id)
+        .subscribe(res => {
+          this.semester = res;
+        });
 
     // need to grab subscription in order to unsubscribe during the onDestroy lifecycle hook
-    this.coursesSub = this.courseService.getCourseList().subscribe(res => {
-      this.courseList = res.filter(course => course.semester_id === this.semester_id);
-    });
+    this.coursesSub = this.courseService.getCourseList()
+        .subscribe(res => {
+          this.courseList = res.filter(course => course.semester_id === this.semester_id);
+        });
   }
 
 }

@@ -1,9 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>assignment-cu</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button [routerLink]="['/course-details', course_id]"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Assignment</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+
+  <ion-list lines="full">
+    <ion-item>
+      <ion-input required type="text" placeholder="Assignment Name"
+                 [(ngModel)]="assignment.assignment_name">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-checkbox [(ngModel)]="assignment.assignment_is_in_progress"
+                    checked="assignment.assignment_id_in_progress">
+      </ion-checkbox>
+      <ion-label>In Progress</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea required type="text" placeholder="Assignment description..."
+                    [(ngModel)]="assignment.assignment_desc">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-button expand="full" (click)="saveAssignment()">Save</ion-button>
+  </ion-list>
 
 </ion-content>

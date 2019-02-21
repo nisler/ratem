@@ -4,6 +4,7 @@ import {CourseService} from '../../services/course.service';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Assignment} from '../../models/assignment.interface';
+import {AssignmentService} from '../../services/assignment.service';
 
 @Component({
   selector: 'app-course-details',
@@ -22,9 +23,11 @@ export class CourseDetailsPage implements OnInit, OnDestroy {
 
   private assignmentList: Assignment[];
   private courseSub: Subscription;
+  private assignmentSub: Subscription;
 
   constructor(private courseService: CourseService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private assignmentService: AssignmentService) { }
 
   ngOnInit() {
     this.course_id = this.route.snapshot.paramMap.get('id');
@@ -36,15 +39,20 @@ export class CourseDetailsPage implements OnInit, OnDestroy {
   ngOnDestroy() {
     // unsubscribe to prevent duplications while navigating using the back button
     this.courseSub.unsubscribe();
+    this.assignmentSub.unsubscribe();
   }
 
   loadCourse() {
+    // TODO: add loading
     this.courseSub = this.courseService.getCourseDetails(this.course_id)
         .subscribe(res => {
           this.course = res;
         });
 
-    // TODO: get assignments for this course
+    this.assignmentSub = this.assignmentService.getAssignmentList()
+        .subscribe(res => {
+          this.assignmentList = res.filter(assignment => assignment.course_id === this.course_id);
+        });
   }
 
 }

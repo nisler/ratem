@@ -28,4 +28,8 @@ export class AssignmentService {
   getAssignmentList() {
     return this.assignmentList;
   }
+
+  addAssignment(assignment: Assignment) {
+    return this.assignmentCollection.add(assignment);
+  }
 }

@@ -1,9 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <!--<ion-back-button [routerLink]="['/semester-details', course.semester_id]"></ion-back-button>-->
-      <!--<ion-back-button [routerLink]="'/semester-details/' + course.semester_id"></ion-back-button>-->
-      <ion-back-button [defaultHref]="'/semester-details/' + course.semester_id"></ion-back-button>
+      <ion-back-button [routerLink]="['/semester-details', course.semester_id]"></ion-back-button>
     </ion-buttons>
     <ion-title>Course</ion-title>
     <ion-buttons slot="end">
@@ -17,10 +15,19 @@
   <ion-card>
     <ion-item>{{ course.semester_name }}</ion-item>
     <ion-item>{{ course.course_name }}</ion-item>
-    <ion-card-content>
-
-    </ion-card-content>
   </ion-card>
 
+    <ion-list *ngFor="let assignment of assignmentList">
+      <ion-item>
+        <ion-label>{{ assignment.assignment_name }}</ion-label>
+        <ion-badge *ngIf="assignment.assignment_is_in_progress">
+          <ion-icon name="alert"></ion-icon>
+        </ion-badge>
+      </ion-item>
+    </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="'/course-details/' + course_id + '/assignment-cu'"><ion-icon name="add"></ion-icon></ion-fab-button>
+  </ion-fab>
 
 </ion-content>
