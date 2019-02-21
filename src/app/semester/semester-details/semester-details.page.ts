@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Semester} from '../../models/semester.interface';
 import {SemesterService} from '../../services/semester.service';
 import {ActivatedRoute} from '@angular/router';
 import {CourseService} from '../../services/course.service';
-import {NavController} from '@ionic/angular';
+import {Subscription} from 'rxjs';
+import {Course} from '../../models/course.interface';
 
 @Component({
   selector: 'app-semester-details',
   templateUrl: './semester-details.page.html',
   styleUrls: ['./semester-details.page.scss'],
 })
-export class SemesterDetailsPage implements OnInit {
+export class SemesterDetailsPage implements OnInit, OnDestroy {
   private semester: Semester = {
     semester_name: '',
     semester_is_current: false
@@ -18,7 +19,9 @@ export class SemesterDetailsPage implements OnInit {
 
   private semester_id = null;
 
-  private courseList = [];
+  private courseList: Course[];
+  private semesterSub: Subscription;
+  private coursesSub: Subscription;
 
   constructor(private semesterService: SemesterService,
               private route: ActivatedRoute,
@@ -31,13 +34,19 @@ export class SemesterDetailsPage implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.coursesSub.unsubscribe();
+    this.semesterSub.unsubscribe();
+  }
+
   loadSemester() {
     // TODO: add loading
-    this.semesterService.getSemesterDetails(this.semester_id).subscribe(res => {
+    this.semesterSub = this.semesterService.getSemesterDetails(this.semester_id).subscribe(res => {
       this.semester = res;
     });
 
-    this.courseService.getCourseList().subscribe(res => {
+    // need to grab subscription in order to unsubscribe during the onDestroy lifecycle hook
+    this.coursesSub = this.courseService.getCourseList().subscribe(res => {
       this.courseList = res.filter(course => course.semester_id === this.semester_id);
     });
   }

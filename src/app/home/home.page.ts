@@ -18,8 +18,4 @@ export class HomePage implements OnInit {
     });
   }
 
-  remove(semester) {
-    this.semesterService.removeSemester(semester.id);
-  }
-
 }

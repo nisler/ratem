@@ -59,12 +59,13 @@ export class CourseCuPage implements OnInit {
 
   saveCourse() {
     if (this.course_id) {
-      this.courseService.updateCourse(this.course, this.course_id)
-          .then(() => {
-            this.nav.navigateBack('home'); // TODO: go back to semester details
-          }).catch((err) => {
-            console.log(err);
-          });
+      // TODO: implement updating
+      // this.courseService.updateCourse(this.course, this.course_id)
+      //     .then(() => {
+      //       this.nav.navigateBack('home'); // TODO: go back to semester details
+      //     }).catch((err) => {
+      //       console.log(err);
+      //     });
     } else {
       this.course.semester_id = this.semester_id;
       this.course.semester_name = this.semester.semester_name;

@@ -36,12 +36,13 @@ export class SemesterCuPage implements OnInit {
 
   saveSemester() {
     if (this.semester_id) {
-      this.semesterService.updateSemester(this.semester, this.semester_id)
-          .then(() => {
-            this.nav.navigateBack('home'); // TODO: go back, not home
-          }).catch((err) => {
-            console.log(err);
-          });
+      // TODO: implement updating
+      // this.semesterService.updateSemester(this.semester, this.semester_id)
+      //     .then(() => {
+      //       this.nav.navigateBack('home'); // TODO: go back, not home
+      //     }).catch((err) => {
+      //       console.log(err);
+      //     });
     } else {
       this.semesterService.addSemester(this.semester)
           .then(() => {

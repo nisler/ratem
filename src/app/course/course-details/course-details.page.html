@@ -1,6 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <!-- TODO: Back button -->
+    <ion-buttons slot="start">
+      <!--<ion-back-button [routerLink]="['/semester-details', course.semester_id]"></ion-back-button>-->
+      <!--<ion-back-button [routerLink]="'/semester-details/' + course.semester_id"></ion-back-button>-->
+      <ion-back-button [defaultHref]="'/semester-details/' + course.semester_id"></ion-back-button>
+    </ion-buttons>
     <ion-title>Course</ion-title>
     <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
