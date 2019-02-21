@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'assignment-details', loadChildren: './assignment/assignment-details/assignment-details.module#AssignmentDetailsPageModule' },
   { path: 'assignment-details/:id', loadChildren: './assignment/assignment-details/assignment-details.module#AssignmentDetailsPageModule' },
   { path: 'assignment-cu', loadChildren: './assignment/assignment-cu/assignment-cu.module#AssignmentCuPageModule' },
-  { path: 'course-details/:course_id/assignment-cu', loadChildren: './assignment/assignment-cu/assignment-cu.module#AssignmentCuPageModule' }
+  { path: 'course-details/:course_id/assignment-cu', loadChildren: './assignment/assignment-cu/assignment-cu.module#AssignmentCuPageModule' },
+  { path: 'assignment-details/:assignment_id/feedback-cu', loadChildren: './feedback/feedback-cu/feedback-cu.module#FeedbackCuPageModule' }
 ];
 
 @NgModule({

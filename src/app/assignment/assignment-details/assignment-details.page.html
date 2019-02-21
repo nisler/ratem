@@ -30,6 +30,18 @@
     <ion-item>
       <ion-card-title color="primary">Feedback</ion-card-title>
     </ion-item>
+    <ion-list *ngFor="let feedback of feedbackList">
+      <ion-item lines="inset">
+        <ion-text>{{ feedback.feedback_txt }}</ion-text>
+        <ion-badge slot="end">{{ feedback.rating | number : '1.2-2' }}</ion-badge>
+      </ion-item>
+    </ion-list>
   </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="'/assignment-details/' + assignment_id + '/feedback-cu'">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>

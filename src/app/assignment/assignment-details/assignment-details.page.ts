@@ -3,6 +3,8 @@ import {Assignment} from '../../models/assignment.interface';
 import {Subscription} from 'rxjs';
 import {AssignmentService} from '../../services/assignment.service';
 import {ActivatedRoute} from '@angular/router';
+import {FeedbackService} from '../../services/feedback.service';
+import {Feedback} from '../../models/feedback.interface';
 
 @Component({
   selector: 'app-assignment-details',
@@ -22,10 +24,13 @@ export class AssignmentDetailsPage implements OnInit, OnDestroy {
   };
   private assignment_id = null;
 
+  private feedbackList: Feedback[];
   private assignmentSub: Subscription;
+  private feedbackSub: Subscription;
 
   constructor(private assignmentService: AssignmentService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private feedbackService: FeedbackService) { }
 
   ngOnInit() {
     this.assignment_id = this.route.snapshot.paramMap.get('id');
@@ -36,6 +41,7 @@ export class AssignmentDetailsPage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.assignmentSub.unsubscribe();
+    this.feedbackSub.unsubscribe();
   }
 
   loadAssignment() {
@@ -44,7 +50,10 @@ export class AssignmentDetailsPage implements OnInit, OnDestroy {
           this.assignment = res;
         });
 
-    // TODO: get feedback list
+    this.feedbackSub = this.feedbackService.getFeedbackList()
+        .subscribe(res => {
+          this.feedbackList = res.filter(feedback => feedback.assignment_id === this.assignment_id);
+        });
   }
 
 }
