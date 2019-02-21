@@ -29,6 +29,10 @@ export class AssignmentService {
     return this.assignmentList;
   }
 
+  getAssignmentDetails(id) {
+    return this.assignmentCollection.doc<Assignment>(id).valueChanges();
+  }
+
   addAssignment(assignment: Assignment) {
     return this.assignmentCollection.add(assignment);
   }

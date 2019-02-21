@@ -12,7 +12,7 @@ import {AssignmentService} from '../../services/assignment.service';
   styleUrls: ['./course-details.page.scss'],
 })
 export class CourseDetailsPage implements OnInit, OnDestroy {
-  course: Course = {
+  private course: Course = {
     course_name: '',
     semester_id: '',
     semester_name: '',
