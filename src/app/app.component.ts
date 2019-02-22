@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import {NavController, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {AuthService} from './services/auth.service';
@@ -27,7 +27,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private authService: AuthService
+    private authService: AuthService,
+    private nav: NavController
   ) {
     this.initializeApp();
   }
@@ -40,7 +41,24 @@ export class AppComponent {
   }
 
   logOut() {
-    this.authService.logoutUser();
+    if (this.authService.isLoggedIn()) {
+      this.authService.logoutUser();
+      console.log('User has been logged out.');
+    } else {
+      console.log('User is not logged in yet...');
+    }
+  }
+
+  hideButton() {
+    return !this.getUser();
+  }
+
+  getUser() {
+    return this.authService.getLoggedInUser();
+  }
+
+  goToUserPage() {
+    this.nav.navigateForward('/user-courses');
   }
 
 }

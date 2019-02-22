@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button [routerLink]="['/user-courses']"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Enroll</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-list *ngFor="let course of currentCourseList">
+      <ion-item lines="inset" button (click)="enroll(course)">
+        {{ course.course_name }} : {{ course.semester_name }}
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+</ion-content>

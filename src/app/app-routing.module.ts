@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
     // semester list
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
-    // na
+    
+    // TODO: REMOVE?
   { path: 'list', loadChildren: './list/list.module#ListPageModule' },
 
     // TODO: REMOVE?
@@ -58,9 +59,25 @@ const routes: Routes = [
     path: 'assignment-details/:assignment_id/feedback-cu',
     loadChildren: './feedback/feedback-cu/feedback-cu.module#FeedbackCuPageModule',
     canActivate: [AuthGuard]
-  },  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' },
-  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' }
+  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
+
+    // view the signed-in user's courses --> PRIVATE
+  {
+    path: 'user-courses',
+    loadChildren: './user/user-courses/user-courses.module#UserCoursesPageModule',
+    canActivate: [AuthGuard]
+  },
+    // have user enroll in a course --> PRIVATE
+  {
+    path: 'user-enroll',
+    loadChildren: './user/user-enroll/user-enroll.module#UserEnrollPageModule',
+    canActivate: [AuthGuard]
+  }
+
+
 
 ];
 

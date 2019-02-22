@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
-import {first} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +37,14 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    // return firebase.authState.pipe(first()).toPromise();
-    // console.log(firebase.auth().currentUser);
-    return firebase.auth().currentUser.uid;
+    // return firebase.authState.pipe(first()).toPromise(); // TODO REMOVE
+    // check if the firebase app is initialized before checking if there is a logged in user
+    return firebase.apps.length &&
+        firebase.auth().currentUser != null &&
+        firebase.auth().currentUser.uid;
+  }
+
+  getLoggedInUser() {
+    return this.isLoggedIn() ? firebase.auth().currentUser : null;
   }
 }
