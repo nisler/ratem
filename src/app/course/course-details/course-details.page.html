@@ -13,8 +13,9 @@
 <ion-content padding>
 
   <ion-card>
-    <ion-item>{{ course.semester_name }}</ion-item>
-    <ion-item>{{ course.course_name }}</ion-item>
+    <ion-item>Semester: {{ course.semester_name }}</ion-item>
+    <ion-item>Course: {{ course.course_name }}</ion-item>
+    <ion-item>Rating: {{ rating | number : '1.2-2' }}</ion-item>
   </ion-card>
 
   <ion-card>

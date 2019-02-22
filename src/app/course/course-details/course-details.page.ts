@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Assignment} from '../../models/assignment.interface';
 import {AssignmentService} from '../../services/assignment.service';
+import {RatingService} from '../../services/rating.service';
 
 @Component({
   selector: 'app-course-details',
@@ -18,8 +19,10 @@ export class CourseDetailsPage implements OnInit, OnDestroy {
     semester_name: '',
     semester_is_current: false
   };
-
   private course_id = null;
+
+  private rating: number;
+  private courseRating;
 
   private assignmentList: Assignment[];
   private courseSub: Subscription;
@@ -27,12 +30,14 @@ export class CourseDetailsPage implements OnInit, OnDestroy {
 
   constructor(private courseService: CourseService,
               private route: ActivatedRoute,
-              private assignmentService: AssignmentService) { }
+              private assignmentService: AssignmentService,
+              private ratingService: RatingService) { }
 
   ngOnInit() {
     this.course_id = this.route.snapshot.paramMap.get('id');
     if (this.course_id) {
       this.loadCourse();
+      this.getCourseRating();
     }
   }
 
@@ -52,6 +57,16 @@ export class CourseDetailsPage implements OnInit, OnDestroy {
     this.assignmentSub = this.assignmentService.getAssignmentList()
         .subscribe(res => {
           this.assignmentList = res.filter(assignment => assignment.course_id === this.course_id);
+        });
+  }
+
+  getCourseRating() {
+    this.ratingService.getRatingsForCourse(this.course_id)
+        .then((res) => {
+          this.courseRating = res;
+          this.rating = this.courseRating
+              .map(r => r.rating)
+              .reduce((a, b) => a + b, 0) / this.courseRating.length;
         });
   }
 

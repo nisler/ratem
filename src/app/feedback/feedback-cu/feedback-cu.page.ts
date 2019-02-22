@@ -5,6 +5,8 @@ import {FeedbackService} from '../../services/feedback.service';
 import {ActivatedRoute} from '@angular/router';
 import {AssignmentService} from '../../services/assignment.service';
 import {NavController} from '@ionic/angular';
+import {RatingService} from '../../services/rating.service';
+import {Rating} from '../../models/rating.interface';
 
 @Component({
   selector: 'app-feedback-cu',
@@ -40,10 +42,17 @@ export class FeedbackCuPage implements OnInit {
   };
   private assignment_id = null;
 
+  private rating: Rating = {
+    feedback_id: '',
+    rating: 0.0,
+    course_id: ''
+  };
+
   constructor(private feedbackService: FeedbackService,
               private route: ActivatedRoute,
               private nav: NavController,
-              private assignmentService: AssignmentService) { }
+              private assignmentService: AssignmentService,
+              private ratingService: RatingService) { }
 
   ngOnInit() {
     this.feedback_id = this.route.snapshot.paramMap.get('id');
@@ -82,7 +91,13 @@ export class FeedbackCuPage implements OnInit {
       this.feedback.semester_name = this.assignment.semester_name;
       this.feedback.semester_is_current = this.assignment.semester_is_current;
       this.feedbackService.addFeedback(this.feedback)
-          .then(() => {
+          .then((feedback) => {
+            /* every time a feedback is created, store its rating to the rating list in order to
+             calculate the course's overall rating */
+            this.rating.feedback_id = feedback.id;
+            this.rating.rating = this.feedback.rating;
+            this.rating.course_id = this.feedback.course_id;
+            this.ratingService.addRating(this.rating);
             this.nav.navigateBack('home'); // TODO navigate back to assignment details
           }).catch((err) => { // TODO: better error checking
             console.log(err);
