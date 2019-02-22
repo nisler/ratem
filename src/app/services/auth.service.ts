@@ -37,7 +37,6 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    // return firebase.authState.pipe(first()).toPromise(); // TODO REMOVE
     // check if the firebase app is initialized before checking if there is a logged in user
     return firebase.apps.length &&
         firebase.auth().currentUser != null &&

@@ -22,7 +22,7 @@ export class UserEnrollPage implements OnInit, OnDestroy {
     user_id: ''
   };
   private user;
-  private currentCourseList: [];
+  private currentCourseList;
   private currentCourseSub: Subscription;
 
   constructor(private courseService: CourseService,
@@ -32,7 +32,6 @@ export class UserEnrollPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.user = this.authService.getLoggedInUser();
-    console.log('user: ', this.user); // TODO DELETE
     if (this.user) {
       this.loadCurrentCourseList();
     }
@@ -50,7 +49,6 @@ export class UserEnrollPage implements OnInit, OnDestroy {
   }
 
   enroll(course) {
-    console.log('course: ', course); // TODO DELETE
     if (this.user) {
       this.userCourse.user_id = this.user.uid;
       this.userCourse.course_id = course.id;
@@ -60,7 +58,6 @@ export class UserEnrollPage implements OnInit, OnDestroy {
       this.userCourse.semester_is_current = course.semester_is_current;
       this.userService.addUserCourse(this.userCourse)
           .then(() => {
-            console.log('added course: ', this.userCourse); // TODO DELETE
             this.nav.navigateBack('/user-courses');
           }).catch((err) => {
             console.log(err); // TODO: error handling

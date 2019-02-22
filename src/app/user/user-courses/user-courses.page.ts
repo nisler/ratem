@@ -23,7 +23,6 @@ export class UserCoursesPage implements OnInit, OnDestroy {
   private user;
 
   private userCourseList: UserCourse[];
-  // private semesterCourses: [];
   private userCourseSub: Subscription;
 
   constructor(private userService: UserService,
@@ -31,7 +30,6 @@ export class UserCoursesPage implements OnInit, OnDestroy {
               private authService: AuthService) { }
 
   ngOnInit() {
-    // this.user_id = this.route.snapshot.paramMap.get('id');
     this.user = this.authService.getLoggedInUser();
     if (this.user) {
       this.loadUserCourses();
@@ -43,15 +41,9 @@ export class UserCoursesPage implements OnInit, OnDestroy {
   }
 
   loadUserCourses() {
-    // TODO: add loading
-    console.log('loading user courses...');
     this.userCourseSub = this.userService.getUserCourseList()
         .subscribe(res => {
-          this.userCourseList = res.filter(userCourse => userCourse.user_id === this.user.uid);
-          // this.semesterCourses = this.userCourseList.map(userCourse => {
-          //   console.log(userCourse); // TODO DELETE
-          //   return userCourse.semester_id;
-          // });
+          this.userCourseList = res.filter(course => course.user_id === this.user.uid);
         });
   }
 

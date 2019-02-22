@@ -1,7 +1,6 @@
 export interface Feedback {
     feedback_txt: string;
     rating: number;
-    // grade: string; // TODO: remove?
     assignment_id: string;
     assignment_name: string;
     assignment_is_in_progress: boolean;

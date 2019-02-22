@@ -17,7 +17,6 @@ export class FeedbackCuPage implements OnInit {
   private feedback: Feedback = {
     feedback_txt: '',
     rating: 2.0,
-    // grade: '', // TODO: remove?
     assignment_id: '',
     assignment_name: '',
     assignment_is_in_progress: false,

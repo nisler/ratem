@@ -13,6 +13,9 @@
 <ion-content padding>
 
   <ion-card>
+    <ion-item>
+      <ion-card-title color="primary">Enrollment</ion-card-title>
+    </ion-item>
     <ion-list>
       <ion-item lines="inset" *ngFor="let course of userCourseList">
         <ion-text>{{ course.course_name }} : {{ course.semester_name }}</ion-text>
@@ -21,9 +24,17 @@
   </ion-card>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [routerLink]="'/user-enroll'">
-      <ion-icon name="add"></ion-icon>
+    <ion-fab-button>
+      <ion-icon name="arrow-dropup-circle"></ion-icon>
     </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button [routerLink]="'/user-enroll'">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon name="create"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
   </ion-fab>
 
 </ion-content>
