@@ -29,19 +29,8 @@ export class CourseService {
     return this.courseList;
   }
 
-  // TODO: firestore querying
-  // getCoursesForSemester(semester_id) {
-  //   const coursesRef = this.db.collection<Course>('courseList', ref => {
-  //     ref.where('semester_id', '==', semester_id);
-  //   });
-  // }
-
   getCourseDetails(id) {
     return this.courseCollection.doc<Course>(id).valueChanges();
-  }
-
-  updateCourse(course: Course, id: string) {
-    return this.courseCollection.doc(id).update(course);
   }
 
   addCourse(course: Course) {

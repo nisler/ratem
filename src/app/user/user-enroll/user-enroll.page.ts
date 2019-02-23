@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Course} from '../../models/course.interface';
 import {CourseService} from '../../services/course.service';
 import {AuthService} from '../../services/auth.service';
 import {UserCourse} from '../../models/usercourse.interface';
